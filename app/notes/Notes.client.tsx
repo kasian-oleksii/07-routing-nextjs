@@ -127,8 +127,8 @@ export default function NotesClient({
         {totalPages > 1 && (
           <Pagination
             currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
             totalPages={totalPages}
+            onPageChange={setCurrentPage}
           />
         )}
 
