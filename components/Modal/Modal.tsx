@@ -1,44 +1,24 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
+import { useEffect } from 'react';
 import css from './Modal.module.css';
 
-interface ModalProps {
+type Props = {
   onClose: () => void;
   children: React.ReactNode;
-}
+};
 
-export default function Modal({ onClose, children }: ModalProps) {
-  const [mounted, setMounted] = useState(false);
-  const [modalContainer, setModalContainer] = useState<HTMLElement | null>(
-    null,
-  );
-
+const Modal = ({ children, onClose }: Props) => {
   useEffect(() => {
-    const existingRoot = document.getElementById('modal-root');
-
-    if (!existingRoot) {
-      const div = document.createElement('div');
-      div.id = 'modal-root';
-      document.body.appendChild(div);
-      setModalContainer(div);
-    } else {
-      setModalContainer(existingRoot);
-    }
-
-    setMounted(true);
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
     };
-
-    document.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleEsc);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleEsc);
     };
   }, [onClose]);
 
@@ -48,17 +28,11 @@ export default function Modal({ onClose, children }: ModalProps) {
     }
   };
 
-  if (!mounted || !modalContainer) return null;
-
-  return createPortal(
-    <div
-      className={css.backdrop}
-      role="dialog"
-      aria-modal="true"
-      onClick={handleBackdropClick}
-    >
+  return (
+    <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.modal}>{children}</div>
-    </div>,
-    modalContainer,
+    </div>
   );
-}
+};
+
+export default Modal;

@@ -7,18 +7,21 @@ const token = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 
 export const fetchNotes = async (
   page: number,
-  query: string,
+  search: string,
+  tag?: string,
 ): Promise<FetchNoteList> => {
-  const params: Record<string, string | number> = {
+  const params = {
     perPage: 12,
     page,
+    tag,
+    search,
   };
 
-  if (query.trim() !== '') {
-    params.search = query;
+  if (search.trim() !== '') {
+    params.search = search;
   }
 
-  const response = await axios.get<FetchNoteList>('/notes', {
+  const response = await axios.get<FetchNoteList>(`/notes`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -44,6 +47,7 @@ export const createNote = async (noteData: NewNote): Promise<Note> => {
       Authorization: `Bearer ${token}`,
     },
   });
+
   return response.data;
 };
 

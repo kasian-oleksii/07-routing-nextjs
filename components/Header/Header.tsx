@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import css from './Header.module.css';
+import TagsMenu from '../TagsMenu/TagsMenu';
 
-const Header = () => {
+const Header = async () => {
+  const tags = ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
+
   return (
     <header className={css.header}>
       <Link href="/" aria-label="Home">
@@ -13,7 +16,7 @@ const Header = () => {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/notes">Notes</Link>
+            <TagsMenu tags={tags} />
           </li>
         </ul>
       </nav>

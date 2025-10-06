@@ -15,14 +15,6 @@ export interface NewNote {
   tag: NoteTag;
 }
 
-// export interface DetalilsNote {
-//   id: string;
-//   title: string;
-//   createAt: string;
-//   content: string;
-//   tag: NoteTag;
-// }
-
 export interface FetchNoteList {
   notes: Note[];
   totalPages: number;
