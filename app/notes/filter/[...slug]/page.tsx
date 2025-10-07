@@ -15,7 +15,9 @@ export default async function NotesPage({ params }: Props) {
 
   const initialPage = 1;
   const initialQuery = '';
-  const initialTag = slug[0] === 'all' ? undefined : slug[0];
+
+  const tagParam = slug[0].toLowerCase();
+  const initialTag = tagParam === 'all' ? undefined : tagParam;
 
   const queryClient = new QueryClient();
 
