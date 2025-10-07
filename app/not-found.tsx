@@ -8,7 +8,7 @@ const NotFound = () => {
       <p className={css.description}>
         Sorry, the page you are looking for does not exist.
       </p>
-      <div className={css.butto_wrapper}>
+      <div className={css.button_wrapper}>
         <Link href="/" className={css.button}>
           Go back home
         </Link>
