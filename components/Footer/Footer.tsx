@@ -9,17 +9,15 @@ const Footer = () => {
           <p>
             Developer:{' '}
             <a
-              href="https://www.linkedin.com/in/volodymyr-vasyliev-dev/"
+              href="https://www.linkedin.com/in/oleksii-kasian-dev/"
               target="_blank"
             >
-              Volodymyr Vasyliev
+              Oleksii Kasian
             </a>{' '}
           </p>
           <p>
             Contact us:{' '}
-            <a href="mailto:vasyliev.official@gmail.com">
-              vasyliev.official@gmail.com
-            </a>
+            <a href="kasianalex1@gmail.com">vasyliev.official@gmail.com</a>
           </p>
         </div>
       </div>
